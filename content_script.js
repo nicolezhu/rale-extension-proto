@@ -24,11 +24,15 @@ jQuery.fn.css = (function(css2) {
 })(jQuery.fn.css);
 
 $(document).ready(function() {
+    // tested on Amazon.com and Twitter.com (for now)
 	console.log('loaded');
-	$('body').click(function(event) {
-		var el = event.target;
-		console.log(el);
-		console.log($(el).css());
-		// console.log($(el).data('events'));
-	});
+
+    // use jquery find function to find any divs containing classes or ids that contain 'bar' or 'nav'
+    var div_class = $('body').find($('div[class*="bar"'));
+    var div_id = $('body').find($('div[id*="nav"'));
+    var results = $.merge(div_class, div_id);
+
+    // since navbar is typically one of the first elements in the document, return the first element
+    console.log(results[0]);
+    console.log($(results[0]).css());
 });
